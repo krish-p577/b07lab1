@@ -3,13 +3,11 @@ public class Polynomial{
     public double coefficient[];
 
     public Polynomial(){
-        System.out.println("single construct innit");
         this.coefficient = new double[1];
         coefficient[0] = 0;
     }
 
     public Polynomial(double[] poly){
-        System.out.println("construct innit");
         coefficient = new double[poly.length];
         for (int i = 0; i < poly.length; i++){
             coefficient[i] = poly[i];
@@ -17,7 +15,6 @@ public class Polynomial{
     }
 
     public Polynomial add(Polynomial p2){
-        System.out.println("add innit");
         int len = Math.max(coefficient.length, p2.coefficient.length);
         
         double[] sum = new double[len];
@@ -36,7 +33,27 @@ public class Polynomial{
         }
         return new Polynomial(sum);
 
+        }
+
+
+        public double evaluate(double x){
+            double ans = 0;
+            
+            for (int i=0; i < coefficient.length;i++){
+                ans += (coefficient[i] * Math.pow(x, i));
+            }
+            return ans;
     }
+
+        public boolean hasRoot(double x){
+            if (this.evaluate(x) == 0){
+                return true;
+            }
+            else{
+                return false;
+            }
+            
+        }
 }
 
 
